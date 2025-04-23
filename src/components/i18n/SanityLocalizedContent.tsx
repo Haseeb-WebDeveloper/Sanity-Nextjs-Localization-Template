@@ -3,14 +3,23 @@
 import React from 'react';
 import { useLocale } from '@/lib/i18n/context';
 
+/**
+ * SanityLocalizedContent props
+ */
 type SanityLocalizedContentProps = {
   fallbackTitle: string;
   sanityTitle?: string;
+  className?: string;
 };
 
+/**
+ * SanityLocalizedContent component
+ * Displays content from Sanity CMS with localization fallbacks
+ */
 const SanityLocalizedContent: React.FC<SanityLocalizedContentProps> = ({ 
   fallbackTitle,
-  sanityTitle 
+  sanityTitle,
+  className = "text-3xl font-bold text-center mb-8"
 }) => {
   const { t } = useLocale();
   
@@ -18,7 +27,7 @@ const SanityLocalizedContent: React.FC<SanityLocalizedContentProps> = ({
   const displayTitle = sanityTitle || t('title') || fallbackTitle;
   
   return (
-    <h1 className="text-3xl font-bold text-center mb-8">{displayTitle}</h1>
+    <h1 className={className}>{displayTitle}</h1>
   );
 };
 

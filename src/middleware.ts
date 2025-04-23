@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { LOCALES, DEFAULT_LOCALE, isValidLocale } from '@/lib/i18n/constants';
 
-const locales = ['en', 'it'];
-const defaultLocale = 'en';
-
+/**
+ * Determines the best locale based on user preferences
+ */
 function getLocale(request: NextRequest) {
   // Check if there is a preferred locale in cookies
   const cookieLocale = request.cookies.get('NEXT_LOCALE')?.value;
-  if (cookieLocale && locales.includes(cookieLocale)) {
+  if (cookieLocale && isValidLocale(cookieLocale)) {
     return cookieLocale;
   }
 
@@ -16,24 +17,28 @@ function getLocale(request: NextRequest) {
     const preferredLocale = acceptLanguage
       .split(',')
       .map(lang => lang.split(';')[0].trim())
-      .find(lang => locales.some(locale => lang.startsWith(locale)));
+      .find(lang => LOCALES.some(locale => lang.startsWith(locale)));
     
     if (preferredLocale) {
-      const foundLocale = locales.find(locale => preferredLocale.startsWith(locale));
+      const foundLocale = LOCALES.find(locale => preferredLocale.startsWith(locale));
       if (foundLocale) {
         return foundLocale;
       }
     }
   }
 
-  return defaultLocale;
+  return DEFAULT_LOCALE;
 }
 
+/**
+ * Internationalization middleware
+ * Ensures all routes have a locale prefix and redirects to appropriate locale when missing
+ */
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   
   // Check if the pathname already has a locale
-  const pathnameHasLocale = locales.some(
+  const pathnameHasLocale = LOCALES.some(
     locale => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
   
@@ -51,6 +56,10 @@ export function middleware(request: NextRequest) {
   return NextResponse.redirect(newUrl);
 }
 
+/**
+ * Middleware matcher configuration
+ * Applies the middleware only to specified routes
+ */
 export const config = {
   matcher: [
     // Skip all internal paths (_next) and API routes

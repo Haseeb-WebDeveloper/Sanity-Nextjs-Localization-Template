@@ -4,6 +4,10 @@ import React from 'react';
 import { useLocale } from '@/lib/i18n/context';
 import { usePathname, useRouter } from 'next/navigation';
 
+/**
+ * LanguageSwitcher component
+ * Allows users to switch between available languages
+ */
 const LanguageSwitcher: React.FC = () => {
   const { locale, t } = useLocale();
   const pathname = usePathname();
@@ -49,4 +53,4 @@ const LanguageSwitcher: React.FC = () => {
   );
 };
 
-export default LanguageSwitcher;
+export default LanguageSwitcher; 
