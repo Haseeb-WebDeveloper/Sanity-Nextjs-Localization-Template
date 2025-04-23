@@ -18,11 +18,11 @@ const MainNav: React.FC = () => {
   ];
 
   return (
-    <nav className="w-full py-4 mb-8">
-      <div className="container mx-auto flex justify-between items-center">
+    <nav className="fixed top-0 left-0 bg-background bg-opacity-50 backdrop-blur-sm border-b-[0.1px] border-border w-full px-[2vw] md:px-[3vw] py-[1vw] md:py-[1.5vw] mb-8">
+      <div className="flex justify-between items-center">
         <Link 
           href={`/${locale}`} 
-          className="text-xl font-bold"
+          className="text-[2vw] font-bold"
         >
           {t('title')}
         </Link>
@@ -34,11 +34,7 @@ const MainNav: React.FC = () => {
               <li key={item.key}>
                 <Link 
                   href={item.href}
-                  className={`transition-colors ${
-                    isActive 
-                      ? 'text-foreground font-medium' 
-                      : 'text-muted-foreground hover:text-foreground'
-                  }`}
+                  className={`transition-colors text-[1.5vw] font-medium`}
                 >
                   {item.label}
                 </Link>

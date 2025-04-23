@@ -8,8 +8,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   const localizedTitle = await getLocalizedHomePageTitle(locale);
 
   return (
-     <div>
-      <h1>{localizedTitle}</h1>
+     <div className="w-full flex flex-col items-center justify-center h-screen">
+      <h1 className="text-[2vw] md:text-[3vw]">{localizedTitle}</h1>
      </div>
   );
 }

@@ -1,32 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, Sora, Newsreader } from "next/font/google";
 import "./globals.css";
 import LocaleWrapper from "@/components/i18n/LocaleWrapper";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LOCALES } from "@/lib/i18n/constants";
-import MainNav from "@/components/navigation/MainNav";
+import MainNav from "@/components/navigation/navbar";
 
-// Load Inter font
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['400', '500', '700', '900'],
-  display: 'swap',
-  variable: '--font-neue', // keeping the variable name for compatibility
-})
-
-const sora = Sora({
-  subsets: ['latin'],
-  weight: ['400', '600', '700'],
-  display: 'swap',
-  variable: '--font-sora',
-})
-
-const newsreader = Newsreader({
-  subsets: ['latin'],
-  weight: ['400', '600', '700'],
-  display: 'swap',
-  variable: '--font-newsreader',
-})
 export const metadata: Metadata = {
   title: "Sanity Localization",
   description: "Localized content with Next.js and Sanity",
@@ -49,7 +27,7 @@ export default function RootLayout({
 }: RootLayoutProps) {
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={`${inter.variable} ${sora.variable} ${newsreader.variable}`}>
+      <body>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -57,10 +35,10 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <LocaleWrapper locale={locale}>
-            <div className="container mx-auto">
-            <MainNav />
+            <main>
+              <MainNav />
               {children}
-            </div>
+            </main>
           </LocaleWrapper>
         </ThemeProvider>
       </body>
