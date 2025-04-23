@@ -217,7 +217,6 @@ export async function getAboutPageContent(locale: string) {
 
 A layout wrapper with common elements for all pages:
 - Navigation bar
-- Breadcrumbs
 - Language switcher
 - Footer
 

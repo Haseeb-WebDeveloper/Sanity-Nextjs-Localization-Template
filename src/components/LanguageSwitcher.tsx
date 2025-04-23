@@ -8,6 +8,9 @@ const LanguageSwitcher: React.FC = () => {
   const { locale, t } = useLocale();
   const pathname = usePathname();
   const router = useRouter();
+
+  console.log(locale);
+  console.log(t);
   
   // Switch language and navigate to the equivalent path in the new language
   const handleLanguageChange = (newLocale: string) => {

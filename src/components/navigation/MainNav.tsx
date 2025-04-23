@@ -6,10 +6,7 @@ import { useLocale } from '@/lib/i18n/context';
 import { usePathname } from 'next/navigation';
 import LanguageSwitcher from '../LanguageSwitcher';
 
-/**
- * MainNav component
- * Provides site-wide navigation with localized links
- */
+
 const MainNav: React.FC = () => {
   const { locale, t } = useLocale();
   const pathname = usePathname();
@@ -18,7 +15,6 @@ const MainNav: React.FC = () => {
   const navItems = [
     { key: 'home', href: `/${locale}`, label: t('home') },
     { key: 'about', href: `/${locale}/about`, label: t('about') },
-    { key: 'contact', href: `/${locale}/contact`, label: t('contact') },
   ];
 
   return (

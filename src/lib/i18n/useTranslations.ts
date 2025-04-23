@@ -11,7 +11,8 @@ export async function useTranslations(locale: string) {
   
   // Return a function that gets translations from the specified locale
   return function translate(key: string, params?: Record<string, string>) {
-    let text = translations[validLocale]?.[key] || key;
+    // Type assertion to tell TypeScript that validLocale and key are valid
+    let text = translations[validLocale as keyof typeof translations][key as keyof typeof translations[keyof typeof translations]] || key;
     
     // Handle interpolation if params are provided
     if (params) {
@@ -22,4 +23,4 @@ export async function useTranslations(locale: string) {
     
     return text;
   };
-} 
+}

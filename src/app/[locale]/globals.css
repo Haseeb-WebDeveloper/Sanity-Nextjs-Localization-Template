@@ -9,6 +9,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sora);
   --font-mono: var(--font-sora);
+  --font-sora: var(--font-sora);
   --font-newsreader: var(--font-newsreader);
   --font-neue: var(--font-neue);
   --color-sidebar-ring: var(--sidebar-ring);

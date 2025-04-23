@@ -32,9 +32,6 @@ export const metadata: Metadata = {
   description: "Localized content with Next.js and Sanity",
 };
 
-/**
- * Root layout props
- */
 type RootLayoutProps = {
   children: React.ReactNode;
   params: {
@@ -55,13 +52,13 @@ export default function RootLayout({
       <body className={`${inter.variable} ${sora.variable} ${newsreader.variable}`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
-          // enableSystem
-          // disableTransitionOnChange
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
         >
           <LocaleWrapper locale={locale}>
-            <MainNav />
             <div className="container mx-auto">
+            <MainNav />
               {children}
             </div>
           </LocaleWrapper>
@@ -71,10 +68,8 @@ export default function RootLayout({
   );
 }
 
-/**
- * Generate static params for supported locales
- * This function enables static generation for all supported locales
- */
+
+//  Generate static params for supported locales
 export async function generateStaticParams() {
   return LOCALES.map(locale => ({ locale }));
 }
